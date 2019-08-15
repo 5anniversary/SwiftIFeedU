@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,9 +12,13 @@
 		5EAC12F523054B5F005472A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC12F323054B5F005472A4 /* Main.storyboard */; };
 		5EAC12F723054B6C005472A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC12F623054B6C005472A4 /* Assets.xcassets */; };
 		5EAC12FA23054B6C005472A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC12F823054B6C005472A4 /* LaunchScreen.storyboard */; };
+		5EAC130223057051005472A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC130123057051005472A4 /* GoogleService-Info.plist */; };
+		B8CD9C37A83826185BC39317 /* Pods_IFeedU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3334F5ECFBD6210AAF46F64B /* Pods_IFeedU.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		16A56D470C7CA4D9112EEB8F /* Pods-IFeedU.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IFeedU.debug.xcconfig"; path = "Target Support Files/Pods-IFeedU/Pods-IFeedU.debug.xcconfig"; sourceTree = "<group>"; };
+		3334F5ECFBD6210AAF46F64B /* Pods_IFeedU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IFeedU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EAC12EC23054B5F005472A4 /* IFeedU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IFeedU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EAC12EF23054B5F005472A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5EAC12F123054B5F005472A4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +26,8 @@
 		5EAC12F623054B6C005472A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5EAC12F923054B6C005472A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5EAC12FB23054B6C005472A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5EAC130123057051005472A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../../../../System/Volumes/Data/Users/user/Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DD3BF706B4D0913933C9A266 /* Pods-IFeedU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IFeedU.release.xcconfig"; path = "Target Support Files/Pods-IFeedU/Pods-IFeedU.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8CD9C37A83826185BC39317 /* Pods_IFeedU.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +47,8 @@
 			children = (
 				5EAC12EE23054B5F005472A4 /* IFeedU */,
 				5EAC12ED23054B5F005472A4 /* Products */,
+				E7E31FFA17A7D13D50C70742 /* Pods */,
+				77F64124D67881AE5B4D9E77 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,8 +69,26 @@
 				5EAC12F623054B6C005472A4 /* Assets.xcassets */,
 				5EAC12F823054B6C005472A4 /* LaunchScreen.storyboard */,
 				5EAC12FB23054B6C005472A4 /* Info.plist */,
+				5EAC130123057051005472A4 /* GoogleService-Info.plist */,
 			);
 			path = IFeedU;
+			sourceTree = "<group>";
+		};
+		77F64124D67881AE5B4D9E77 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3334F5ECFBD6210AAF46F64B /* Pods_IFeedU.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E7E31FFA17A7D13D50C70742 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				16A56D470C7CA4D9112EEB8F /* Pods-IFeedU.debug.xcconfig */,
+				DD3BF706B4D0913933C9A266 /* Pods-IFeedU.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +98,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5EAC12FE23054B6C005472A4 /* Build configuration list for PBXNativeTarget "IFeedU" */;
 			buildPhases = (
+				E46FA11F4F2829E4570F75B1 /* [CP] Check Pods Manifest.lock */,
 				5EAC12E823054B5F005472A4 /* Sources */,
 				5EAC12E923054B5F005472A4 /* Frameworks */,
 				5EAC12EA23054B5F005472A4 /* Resources */,
+				EEF8F1C23797D2BBCAC6CE3D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -123,12 +152,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EAC12FA23054B6C005472A4 /* LaunchScreen.storyboard in Resources */,
+				5EAC130223057051005472A4 /* GoogleService-Info.plist in Resources */,
 				5EAC12F723054B6C005472A4 /* Assets.xcassets in Resources */,
 				5EAC12F523054B5F005472A4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E46FA11F4F2829E4570F75B1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IFeedU-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EEF8F1C23797D2BBCAC6CE3D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IFeedU/Pods-IFeedU-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IFeedU/Pods-IFeedU-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IFeedU/Pods-IFeedU-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5EAC12E823054B5F005472A4 /* Sources */ = {
@@ -280,8 +352,10 @@
 		};
 		5EAC12FF23054B6C005472A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 16A56D470C7CA4D9112EEB8F /* Pods-IFeedU.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 78A867AHKF;
 				INFOPLIST_FILE = IFeedU/Info.plist;
@@ -291,15 +365,18 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = skhu.ac.kr.IFeedU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		5EAC130023054B6C005472A4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DD3BF706B4D0913933C9A266 /* Pods-IFeedU.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 78A867AHKF;
 				INFOPLIST_FILE = IFeedU/Info.plist;
@@ -309,8 +386,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = skhu.ac.kr.IFeedU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
