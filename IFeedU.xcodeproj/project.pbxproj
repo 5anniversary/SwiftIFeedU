@@ -7,26 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E65FD9D2305D7C20008D32D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E65FD9C2305D7C20008D32D /* SignUpViewController.swift */; };
+		5E65FDA02305F6590008D32D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E65FD9F2305F6590008D32D /* MainViewController.swift */; };
 		5EAC12F023054B5F005472A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC12EF23054B5F005472A4 /* AppDelegate.swift */; };
 		5EAC12F223054B5F005472A4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC12F123054B5F005472A4 /* ViewController.swift */; };
 		5EAC12F523054B5F005472A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC12F323054B5F005472A4 /* Main.storyboard */; };
 		5EAC12F723054B6C005472A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC12F623054B6C005472A4 /* Assets.xcassets */; };
 		5EAC12FA23054B6C005472A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC12F823054B6C005472A4 /* LaunchScreen.storyboard */; };
 		5EAC130223057051005472A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC130123057051005472A4 /* GoogleService-Info.plist */; };
+		5EAC1304230582CD005472A4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC1303230582CD005472A4 /* LoginViewController.swift */; };
+		5EEDF5842305B64C00C2DD57 /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EEDF5832305B64C00C2DD57 /* RemoteConfigDefaults.plist */; };
 		B8CD9C37A83826185BC39317 /* Pods_IFeedU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3334F5ECFBD6210AAF46F64B /* Pods_IFeedU.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		16A56D470C7CA4D9112EEB8F /* Pods-IFeedU.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IFeedU.debug.xcconfig"; path = "Target Support Files/Pods-IFeedU/Pods-IFeedU.debug.xcconfig"; sourceTree = "<group>"; };
 		3334F5ECFBD6210AAF46F64B /* Pods_IFeedU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IFeedU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E65FD9C2305D7C20008D32D /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignUpViewController.swift; path = "New Group/SignUpViewController.swift"; sourceTree = "<group>"; };
+		5E65FD9F2305F6590008D32D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = "New Group/MainViewController.swift"; sourceTree = "<group>"; };
 		5EAC12EC23054B5F005472A4 /* IFeedU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IFeedU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EAC12EF23054B5F005472A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5EAC12F123054B5F005472A4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5EAC12F123054B5F005472A4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = "New Group/ViewController.swift"; sourceTree = "<group>"; };
 		5EAC12F423054B5F005472A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5EAC12F623054B6C005472A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5EAC12F923054B6C005472A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5EAC12FB23054B6C005472A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5EAC130123057051005472A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../../../../System/Volumes/Data/Users/user/Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5EAC1303230582CD005472A4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "New Group/LoginViewController.swift"; sourceTree = "<group>"; };
+		5EEDF5832305B64C00C2DD57 /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
 		DD3BF706B4D0913933C9A266 /* Pods-IFeedU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IFeedU.release.xcconfig"; path = "Target Support Files/Pods-IFeedU/Pods-IFeedU.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,12 +72,16 @@
 			isa = PBXGroup;
 			children = (
 				5EAC12EF23054B5F005472A4 /* AppDelegate.swift */,
+				5EAC1303230582CD005472A4 /* LoginViewController.swift */,
+				5E65FD9C2305D7C20008D32D /* SignUpViewController.swift */,
+				5E65FD9F2305F6590008D32D /* MainViewController.swift */,
 				5EAC12F123054B5F005472A4 /* ViewController.swift */,
 				5EAC12F323054B5F005472A4 /* Main.storyboard */,
 				5EAC12F623054B6C005472A4 /* Assets.xcassets */,
 				5EAC12F823054B6C005472A4 /* LaunchScreen.storyboard */,
 				5EAC12FB23054B6C005472A4 /* Info.plist */,
 				5EAC130123057051005472A4 /* GoogleService-Info.plist */,
+				5EEDF5832305B64C00C2DD57 /* RemoteConfigDefaults.plist */,
 			);
 			path = IFeedU;
 			sourceTree = "<group>";
@@ -103,6 +115,7 @@
 				5EAC12E923054B5F005472A4 /* Frameworks */,
 				5EAC12EA23054B5F005472A4 /* Resources */,
 				EEF8F1C23797D2BBCAC6CE3D /* [CP] Embed Pods Frameworks */,
+				7630192E2D4D7A65D31786D5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -152,6 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EAC12FA23054B6C005472A4 /* LaunchScreen.storyboard in Resources */,
+				5EEDF5842305B64C00C2DD57 /* RemoteConfigDefaults.plist in Resources */,
 				5EAC130223057051005472A4 /* GoogleService-Info.plist in Resources */,
 				5EAC12F723054B6C005472A4 /* Assets.xcassets in Resources */,
 				5EAC12F523054B5F005472A4 /* Main.storyboard in Resources */,
@@ -161,6 +175,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		7630192E2D4D7A65D31786D5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IFeedU/Pods-IFeedU-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IFeedU/Pods-IFeedU-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IFeedU/Pods-IFeedU-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E46FA11F4F2829E4570F75B1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -207,8 +238,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EAC1304230582CD005472A4 /* LoginViewController.swift in Sources */,
 				5EAC12F223054B5F005472A4 /* ViewController.swift in Sources */,
+				5E65FD9D2305D7C20008D32D /* SignUpViewController.swift in Sources */,
 				5EAC12F023054B5F005472A4 /* AppDelegate.swift in Sources */,
+				5E65FDA02305F6590008D32D /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,7 +400,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = skhu.ac.kr.IFeedU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -387,7 +421,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = skhu.ac.kr.IFeedU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
