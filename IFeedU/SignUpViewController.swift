@@ -2,7 +2,7 @@
 //  SignUpViewController.swift
 //  IFeedU
 //
-//  Created by Junhyeon on 2019/08/16.
+//  Created by Junhyeon on 2019/08/17.
 //  Copyright © 2019 Junhyeon. All rights reserved.
 //
 
@@ -12,7 +12,7 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class SignUpViewController: UIViewController {
-
+    
     @IBOutlet weak var emailSVC: UITextField!
     @IBOutlet weak var nameSVC: UITextField!
     @IBOutlet weak var passwordSVC: UITextField!
@@ -26,8 +26,8 @@ class SignUpViewController: UIViewController {
     
     let alert = UIAlertController(title: "title", message: "message", preferredStyle: UIAlertController.Style.alert)
     let signUpError = UIAlertAction(title: "Error", style: .default, handler: nil)
-
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,7 +38,7 @@ class SignUpViewController: UIViewController {
             n.height.equalTo(20)
             
         }
-
+        
         backgroundColor = remoteconfig["splash_background"].stringValue
         color = remoteconfig["splash_color"].stringValue
         
@@ -78,6 +78,6 @@ class SignUpViewController: UIViewController {
     @IBAction func cancelEvent(){
         self.dismiss(animated: true, completion: nil)
     }
-
-
+    
+    
 }

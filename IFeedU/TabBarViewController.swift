@@ -1,14 +1,14 @@
 //
-//  MainViewController.swift
+//  TabBarViewController.swift
 //  IFeedU
 //
-//  Created by Junhyeon on 2019/08/16.
+//  Created by Junhyeon on 2019/08/17.
 //  Copyright © 2019 Junhyeon. All rights reserved.
 //
 
 import UIKit
 
-class MainViewController: UIViewController {
+class TabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -2,7 +2,7 @@
 //  LoginViewController.swift
 //  IFeedU
 //
-//  Created by Junhyeon on 2019/08/15.
+//  Created by Junhyeon on 2019/08/17.
 //  Copyright © 2019 Junhyeon. All rights reserved.
 //
 
@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 
 class LoginViewController: UIViewController {
-
+    
     @IBOutlet weak var emailLVC: UITextField!
     @IBOutlet weak var passwordLVC: UITextField!
     @IBOutlet weak var loginButtonLV: UIButton!
@@ -23,7 +23,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         try! Auth.auth().signOut()
         
         let statusBar = UIView()
@@ -48,8 +48,8 @@ class LoginViewController: UIViewController {
         
         Auth.auth().addStateDidChangeListener{ (auth, user) in
             if(user != nil){
-                let view = self.storyboard?.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
-                self.present(view, animated: true, completion: nil)
+                let view = self.storyboard?.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController?
+                self.present(view!, animated: true, completion: nil)
             }
         }
     }

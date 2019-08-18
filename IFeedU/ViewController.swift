@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  IFeedU
 //
-//  Created by Junhyeon on 2019/08/15.
+//  Created by Junhyeon on 2019/08/17.
 //  Copyright © 2019 Junhyeon. All rights reserved.
 //
 
@@ -11,10 +11,10 @@ import SnapKit
 import Firebase
 
 class ViewController: UIViewController {
-
+    
     var box = UIImageView()
     var remoteConfig : RemoteConfig!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,9 +23,9 @@ class ViewController: UIViewController {
         settings.minimumFetchInterval = 0
         remoteConfig.configSettings = settings
         remoteConfig.setDefaults(fromPlist: "RemoteConfigDefaults")
-
+        
         let backgroundColor : String! = remoteConfig["splash_background"].stringValue
-
+        
         remoteConfig.fetch(withExpirationDuration: TimeInterval(0)) { (status, error) -> Void in
             if status == .success {
                 print("Config fetched!")
@@ -40,7 +40,7 @@ class ViewController: UIViewController {
         }
         
         self.view.backgroundColor = UIColor(hex: backgroundColor!)
-
+        
         
         self.view.addSubview(box)
         box.snp.makeConstraints{ (make) in
@@ -50,7 +50,7 @@ class ViewController: UIViewController {
         
         
     }
-
+    
     func displayWelcome(){
         
         let backgroundColor : String! = remoteConfig["splash_background"].stringValue
@@ -96,4 +96,3 @@ extension UIColor {
         )
     }
 }
-
