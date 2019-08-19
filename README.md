@@ -6,6 +6,8 @@
 2 . FirebaseUI 
 3 . SnapKit
 4 . TextFieldEffects
+5 . Fusuma
+6 . SwiftSoup
 ```
 <https://github.com/firebase/firebase-ios-sdk>
 
@@ -14,6 +16,10 @@
 <https://github.com/SnapKit/SnapKit>
 
 <https://github.com/raulriera/TextFieldEffects>
+
+<https://github.com/ytakzk/Fusuma>
+
+<https://github.com/scinfu/SwiftSoup>
 
 
 # 2. 사용한 이미지
