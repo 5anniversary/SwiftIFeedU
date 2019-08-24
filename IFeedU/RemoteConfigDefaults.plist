@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>splash_barcolor</key>
+	<string></string>
 	<key>splash_background</key>
 	<string>#98C5E9</string>
 	<key>splash_message_caps</key>

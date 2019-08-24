@@ -23,7 +23,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+//        마지막 빌드때 주석 취소시킬 것
         try! Auth.auth().signOut()
         
         let statusBar = UIView()

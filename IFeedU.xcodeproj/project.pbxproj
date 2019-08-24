@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E4F9501230FDDAC00D6203F /* AddArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4F9500230FDDAC00D6203F /* AddArticleViewController.swift */; };
 		5E61E8C22307FC2C0078E1D8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E61E8C12307FC2C0078E1D8 /* LoginViewController.swift */; };
 		5E61E8C42307FC520078E1D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E61E8C32307FC520078E1D8 /* ViewController.swift */; };
 		5E61E8C62307FC620078E1D8 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E61E8C52307FC620078E1D8 /* SignUpViewController.swift */; };
 		5E61E8C823081E6A0078E1D8 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E61E8C723081E6A0078E1D8 /* TabBarViewController.swift */; };
-		5E61E8CA23081FBA0078E1D8 /* AddNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E61E8C923081FBA0078E1D8 /* AddNavigationController.swift */; };
 		5E61E8CC23081FDD0078E1D8 /* TimelineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E61E8CB23081FDD0078E1D8 /* TimelineTableViewCell.swift */; };
 		5E61E8CE23081FFC0078E1D8 /* TimelineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E61E8CD23081FFC0078E1D8 /* TimelineTableViewController.swift */; };
-		5E61E8D0230820270078E1D8 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E61E8CF230820270078E1D8 /* UploadViewController.swift */; };
 		5E61E8D323083DE60078E1D8 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E61E8D223083DE60078E1D8 /* Data.swift */; };
+		5E75CEB62311038900347258 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E75CEB52311038900347258 /* ArticleViewController.swift */; };
 		5EAC12F023054B5F005472A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC12EF23054B5F005472A4 /* AppDelegate.swift */; };
 		5EAC12F523054B5F005472A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC12F323054B5F005472A4 /* Main.storyboard */; };
 		5EAC12F723054B6C005472A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC12F623054B6C005472A4 /* Assets.xcassets */; };
@@ -28,15 +28,15 @@
 /* Begin PBXFileReference section */
 		16A56D470C7CA4D9112EEB8F /* Pods-IFeedU.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IFeedU.debug.xcconfig"; path = "Target Support Files/Pods-IFeedU/Pods-IFeedU.debug.xcconfig"; sourceTree = "<group>"; };
 		3334F5ECFBD6210AAF46F64B /* Pods_IFeedU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IFeedU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E4F9500230FDDAC00D6203F /* AddArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddArticleViewController.swift; sourceTree = "<group>"; };
 		5E61E8C12307FC2C0078E1D8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		5E61E8C32307FC520078E1D8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5E61E8C32307FC520078E1D8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = "../New Group/ViewController.swift"; sourceTree = "<group>"; };
 		5E61E8C52307FC620078E1D8 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		5E61E8C723081E6A0078E1D8 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
-		5E61E8C923081FBA0078E1D8 /* AddNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNavigationController.swift; sourceTree = "<group>"; };
 		5E61E8CB23081FDD0078E1D8 /* TimelineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineTableViewCell.swift; sourceTree = "<group>"; };
 		5E61E8CD23081FFC0078E1D8 /* TimelineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineTableViewController.swift; sourceTree = "<group>"; };
-		5E61E8CF230820270078E1D8 /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		5E61E8D223083DE60078E1D8 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		5E75CEB52311038900347258 /* ArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		5EAC12EC23054B5F005472A4 /* IFeedU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IFeedU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EAC12EF23054B5F005472A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5EAC12F423054B5F005472A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -60,6 +60,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E3E47D9230C1AD600D4F393 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5E61E8C723081E6A0078E1D8 /* TabBarViewController.swift */,
+				5E61E8C12307FC2C0078E1D8 /* LoginViewController.swift */,
+				5E61E8C32307FC520078E1D8 /* ViewController.swift */,
+				5E61E8C52307FC620078E1D8 /* SignUpViewController.swift */,
+				5E61E8CD23081FFC0078E1D8 /* TimelineTableViewController.swift */,
+				5E75CEB52311038900347258 /* ArticleViewController.swift */,
+				5E4F9500230FDDAC00D6203F /* AddArticleViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		5E3E47DA230C1AE100D4F393 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5E61E8D223083DE60078E1D8 /* Data.swift */,
+			);
+			name = Model;
+			path = "New Group1";
+			sourceTree = "<group>";
+		};
 		5EAC12E323054B5F005472A4 = {
 			isa = PBXGroup;
 			children = (
@@ -81,22 +104,16 @@
 		5EAC12EE23054B5F005472A4 /* IFeedU */ = {
 			isa = PBXGroup;
 			children = (
-				5E61E8C12307FC2C0078E1D8 /* LoginViewController.swift */,
-				5E61E8C32307FC520078E1D8 /* ViewController.swift */,
-				5E61E8C52307FC620078E1D8 /* SignUpViewController.swift */,
+				5E3E47DA230C1AE100D4F393 /* Model */,
+				5E3E47D9230C1AD600D4F393 /* ViewController */,
 				5EAC12EF23054B5F005472A4 /* AppDelegate.swift */,
-				5E61E8C723081E6A0078E1D8 /* TabBarViewController.swift */,
-				5E61E8C923081FBA0078E1D8 /* AddNavigationController.swift */,
 				5E61E8CB23081FDD0078E1D8 /* TimelineTableViewCell.swift */,
-				5E61E8CD23081FFC0078E1D8 /* TimelineTableViewController.swift */,
-				5E61E8CF230820270078E1D8 /* UploadViewController.swift */,
 				5EAC12F323054B5F005472A4 /* Main.storyboard */,
 				5EAC12F623054B6C005472A4 /* Assets.xcassets */,
 				5EAC12F823054B6C005472A4 /* LaunchScreen.storyboard */,
 				5EAC12FB23054B6C005472A4 /* Info.plist */,
 				5EAC130123057051005472A4 /* GoogleService-Info.plist */,
 				5EEDF5832305B64C00C2DD57 /* RemoteConfigDefaults.plist */,
-				5E61E8D223083DE60078E1D8 /* Data.swift */,
 			);
 			path = IFeedU;
 			sourceTree = "<group>";
@@ -254,15 +271,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E61E8CC23081FDD0078E1D8 /* TimelineTableViewCell.swift in Sources */,
+				5E4F9501230FDDAC00D6203F /* AddArticleViewController.swift in Sources */,
 				5E61E8D323083DE60078E1D8 /* Data.swift in Sources */,
 				5E61E8C42307FC520078E1D8 /* ViewController.swift in Sources */,
 				5E61E8C22307FC2C0078E1D8 /* LoginViewController.swift in Sources */,
 				5E61E8C62307FC620078E1D8 /* SignUpViewController.swift in Sources */,
-				5E61E8D0230820270078E1D8 /* UploadViewController.swift in Sources */,
 				5E61E8C823081E6A0078E1D8 /* TabBarViewController.swift in Sources */,
+				5E75CEB62311038900347258 /* ArticleViewController.swift in Sources */,
 				5EAC12F023054B5F005472A4 /* AppDelegate.swift in Sources */,
 				5E61E8CE23081FFC0078E1D8 /* TimelineTableViewController.swift in Sources */,
-				5E61E8CA23081FBA0078E1D8 /* AddNavigationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
