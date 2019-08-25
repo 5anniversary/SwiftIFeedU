@@ -10,12 +10,11 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import FirebaseStorage
-
+import Fusuma
 
 class AddArticleViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var ImageView: UIImageView!
-    @IBOutlet weak var TitleView: UITextView!
     @IBOutlet weak var TextView: UITextView!
     @IBOutlet weak var ImageAdd: UIButton!
     
@@ -105,12 +104,13 @@ class AddArticleViewController: UIViewController, UITextViewDelegate {
     //MARK: - ImageView
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
-        self.ImageView.image = image
+//        self.ImageView.image = image
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
     }
+
 
     
     @IBAction func imagePicker(_ sender: Any){
@@ -133,7 +133,7 @@ class AddArticleViewController: UIViewController, UITextViewDelegate {
 //        imagePicker.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
 //        imagePicker.allowsEditing = true
 //        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
-        
+//
 //        self.present(imagePicker, animated: true, completion: nil)
         
     }
@@ -141,7 +141,7 @@ class AddArticleViewController: UIViewController, UITextViewDelegate {
     @IBAction func openLibrary()
     {
         picker.sourceType = .photoLibrary
-        present(picker, animated: false, completion: nil)
+        present(picker, animated: true, completion: nil)
         
     }
     
@@ -149,7 +149,7 @@ class AddArticleViewController: UIViewController, UITextViewDelegate {
     {
         if(UIImagePickerController .isSourceTypeAvailable(.camera)){
             picker.sourceType = .camera
-            present(picker, animated: false, completion: nil)
+            present(picker, animated: true, completion: nil)
         }
         else{
             print("Camera not available")
@@ -161,13 +161,14 @@ class AddArticleViewController: UIViewController, UITextViewDelegate {
     @IBAction func uploadPost(){
         let curRef = self.ref?.child("posts").childByAutoId()
   
-        curRef?.child("title").setValue([self.TitleView.text!])
-        curRef?.child("text").setValue([self.TextView.text!])
+//        self.ref.child("users").child(uid!).setValue(["name": self.nameSVC.text!])
+//
+//        
+//        curRef?.chile("uid").setValue(uid)
+        curRef?.child("text").setValue(self.TextView.text)
         
-        textViewDidEndEditing(TitleView)
         textViewDidEndEditing(TextView)
 
-        
         let date = Date()
         let IntValueOfDate = Int(date.timeIntervalSince1970)
         curRef?.child("date").setValue("\(IntValueOfDate)")
@@ -181,6 +182,7 @@ class AddArticleViewController: UIViewController, UITextViewDelegate {
         imageRef?.putData(uploadData, metadata: nil, completion:{ metadata, error in
             if error != nil {
                 // 에러 발생
+                print("firebase 사진 업로드 에러")
             } else {
                 // Metadata는 size, content-type, download URL과 같은 컨텐트의 메타데이터를 가진다
             }
@@ -213,4 +215,25 @@ class AddArticleViewController: UIViewController, UITextViewDelegate {
     }
     */
 
+}
+extension AddArticleViewController : UIImagePickerControllerDelegate,
+UINavigationControllerDelegate{
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let image = info[.originalImage] as? UIImage
+        {
+            self.ImageView.image = image
+            print(info)
+            
+        }
+        dismiss(animated: true, completion: nil)
+        
+    }
+    
+    //
+    //    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    //        dismiss(animated: true, completion: nil)
+    //    }
+    
 }

@@ -14,6 +14,11 @@ import FirebaseUI
 
 class ArticleViewController: UIViewController {
 
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var replyTextField: UITextField!
+    @IBOutlet weak var replyButton: UIButton!
+    
     var ref:DatabaseReference?
     var storageRef:StorageReference?
     

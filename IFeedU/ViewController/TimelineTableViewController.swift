@@ -96,18 +96,16 @@ class TimelineTableViewController: UITableViewController {
         orderedQuery = ref?.child("posts").queryOrdered(byChild: "date")
         
         orderedQuery?.observeSingleEvent(of: .value, with: { (snapshot) in
-            
             var snapshotData = snapshot.children.allObjects
             snapshotData = snapshotData.reversed()
             
             for anyDatum in snapshotData{
                 let snapshotDatum = anyDatum as! DataSnapshot
                 let dicDatum = snapshotDatum.value as! [String:String]
-                if  let title = dicDatum["title"],
-                    let text = dicDatum["text"],
+                if let text = dicDatum["text"],
                     let date = Int(dicDatum["date"]!){
-                    let post = Post(title,text,date)
-                    
+                    let post = Post(text,date)
+
                     //Get Image
                     let imageRef = self.storageRef?.child("\(snapshotDatum.key).jpg")
                     post.imageView.sd_setImage(with: imageRef!, placeholderImage: UIImage(), completion:{(image,error,cacheType,imageURL) in self.tableView.reloadData() })
@@ -138,10 +136,9 @@ class TimelineTableViewController: UITableViewController {
             for anyDatum in snapshotData{
                 let snapshotDatum = anyDatum as! DataSnapshot
                 let dicDatum = snapshotDatum.value as! [String:String]
-                if  let title = dicDatum["title"],
-                    let text = dicDatum["text"],
+                if  let text = dicDatum["text"],
                     let date = Int(dicDatum["date"]!){
-                    let post = Post(title,text,date)
+                    let post = Post(text,date)
                     
                     //Get Image from URL
                     let imageRef = self.storageRef?.child("\(snapshotDatum.key).jpg")
