@@ -14,16 +14,16 @@ import FirebaseUI
 
 class ArticleViewController: UIViewController {
 
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var replyTextField: UITextField!
-    @IBOutlet weak var replyButton: UIButton!
-    
-    var ref:DatabaseReference?
-    var storageRef:StorageReference?
-    
-    var posts = [Post]()                //테이블 뷰에 표시될 포스트들을 담는 배열
-    var loadedPosts = [Post]()          //Firebase에서 로드된 포스트들
+//    @IBOutlet weak var imageView: UIImageView!
+//    @IBOutlet weak var textView: UITextView!
+//    @IBOutlet weak var replyTextField: UITextField!
+//    @IBOutlet weak var replyButton: UIButton!
+//
+//    var ref:DatabaseReference?
+//    var storageRef:StorageReference?
+//
+//    var replys = [Reply]()                //테이블 뷰에 표시될 포스트들을 담는 배열
+//    var loadedPosts = [Reply]()          //Firebase에서 로드된 포스트들
     
     let remoteconfig = RemoteConfig.remoteConfig()
     var backgroundColor : String!
@@ -41,21 +41,49 @@ class ArticleViewController: UIViewController {
     }
     
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.posts.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineCell", for: indexPath) as! TimelineTableViewCell
-        let post = posts[indexPath.row]
-        cell.TextLabel?.text = post.text
-        cell.ImageView?.image = post.imageView.image
-        
-        return cell
-    }
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return self.replys.count
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "ReplyCell", for: indexPath) as! ReplyTableViewCell
+//        let reply = replys[indexPath.row]
+//        cell.backgroundColor = UIColor(hex: backgroundColor)
+//        cell.textLabel?.text = Reply.text
+//
+//        return cell
+//    }
+//
+//    @IBAction func loadPosts(){
+//        var orderedQuery:DatabaseQuery?
+//        orderedQuery = ref?.child("posts").queryOrdered(byChild: "date")
+//
+//        orderedQuery?.observeSingleEvent(of: .value, with: { (snapshot) in
+//            var snapshotData = snapshot.children.allObjects
+//            snapshotData = snapshotData.reversed()
+//
+//            for anyDatum in snapshotData{
+//                let snapshotDatum = anyDatum as! DataSnapshot
+//                let dicDatum = snapshotDatum.value as! [String:String]
+//                if let text = dicDatum["text"],
+//                    let date = Int(dicDatum["date"]!){
+//                    let post = Post(text,date)
+//
+//                    //Get Image
+//                    let imageRef = self.storageRef?.child("\(snapshotDatum.key).jpg")
+//                    post.imageView.sd_setImage(with: imageRef!, placeholderImage: UIImage(), completion:{(image,error,cacheType,imageURL) in
+//
+//                    })
+//
+//                    self.loadedPosts += [replys]
+//                }
+//            }
+//
+//            self.replys += self.loadedPosts.prefix(g_NumPerOneLoad)
+//            self.tableView.reloadData()
+//        })
+//    }
 
-
-    
     /*
     // MARK: - Navigation
 

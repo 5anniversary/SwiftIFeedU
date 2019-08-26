@@ -26,6 +26,7 @@ class TimelineTableViewController: UITableViewController {
     var backgroundColor : String!
     var color : String!
 
+    
     lazy var leftBarButton : UIBarButtonItem = {
         let button = UIBarButtonItem(title: "로그아웃", style: .plain, target: self, action: #selector(logoutButton))
         
@@ -53,17 +54,16 @@ class TimelineTableViewController: UITableViewController {
         backgroundColor = remoteconfig["splash_background"].stringValue
         color = remoteconfig["splash_color"].stringValue
         
-//        self.navigationItem.rightBarButtonItem = self.rigthBarButton
         self.navigationItem.leftBarButtonItem = self.leftBarButton
 
         self.FooterLabel.textColor = UIColor(hex: color)
         self.view.backgroundColor = UIColor(hex: backgroundColor)
-//        self.navigationController?.navigationBar.tintColor = UIColor(hex: color)
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        //  self.navigationController?.navigationBar.tintColor = UIColor(hex: color)
+        //  Uncomment the following line to preserve selection between presentations
+        //  self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        //  Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        //  self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
@@ -79,6 +79,7 @@ class TimelineTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineCell", for: indexPath) as! TimelineTableViewCell
         let post = posts[indexPath.row]
+        cell.backgroundColor = UIColor(hex: backgroundColor)
         cell.TextLabel?.text = post.text
         cell.ImageView?.image = post.imageView.image
         
@@ -174,7 +175,7 @@ class TimelineTableViewController: UITableViewController {
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let  height = scrollView.frame.size.height
+        let height = scrollView.frame.size.height
         let contentYoffset = scrollView.contentOffset.y
         let distanceFromBottom = scrollView.contentSize.height + self.FooterLabel.frame.height - contentYoffset
         if distanceFromBottom < height {

@@ -22,7 +22,7 @@ class AddArticleViewController: UIViewController, UITextViewDelegate {
 
     var image = UIImage()
     
-    var ref: DatabaseReference?
+    var ref:DatabaseReference?
     var storageRef:StorageReference?
     
     let remoteconfig = RemoteConfig.remoteConfig()
@@ -48,6 +48,7 @@ class AddArticleViewController: UIViewController, UITextViewDelegate {
 
         picker.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
 
+        
         ref = Database.database().reference()   //Firebase Database 루트를 가리키는 레퍼런스
         storageRef = Storage.storage().reference()  ////Firebase Storage 루트를 가리키는 레퍼런스
         
@@ -129,13 +130,7 @@ class AddArticleViewController: UIViewController, UITextViewDelegate {
         
         self.present(alert, animated: true, completion: nil)
         
-//        let imagePicker = UIImagePickerController()
-//        imagePicker.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
-//        imagePicker.allowsEditing = true
-//        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
-//
-//        self.present(imagePicker, animated: true, completion: nil)
-        
+
     }
     
     @IBAction func openLibrary()
@@ -160,22 +155,25 @@ class AddArticleViewController: UIViewController, UITextViewDelegate {
 
     @IBAction func uploadPost(){
         let curRef = self.ref?.child("posts").childByAutoId()
-  
-//        self.ref.child("users").child(uid!).setValue(["name": self.nameSVC.text!])
-//
-//        
-//        curRef?.chile("uid").setValue(uid)
+        
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let image = self.ImageView.image
+        curRef?.child("uid").setValue(uid)
         curRef?.child("text").setValue(self.TextView.text)
         
         textViewDidEndEditing(TextView)
 
+//        let imagesRef = storageRef?.child("images")
+        
         let date = Date()
         let IntValueOfDate = Int(date.timeIntervalSince1970)
         curRef?.child("date").setValue("\(IntValueOfDate)")
         
         let imageRef = storageRef?.child((curRef?.key)!+".jpg")
-        
-        guard let uploadData = image.jpegData(compressionQuality: 0.1) else{
+
+        guard let uploadData =
+            image?.jpegData(compressionQuality: 0.7) else{
             return
         }
 
@@ -188,8 +186,27 @@ class AddArticleViewController: UIViewController, UITextViewDelegate {
             }
         })
         
+//        curRef?.child("imageURL").setValue()
+
         process()
     }
+    
+//    func uploadImage(){
+//        let data = Data()
+//        let riversRef = storageRef?.child("image/article"+".jpg")
+//
+//        let uploadTask = riversRef?.putData(data, metadata: nil) { (metadata, error) in
+//            guard let metadata = metadata else {
+//                return
+//            }
+//            let size = metadata.size
+//            riversRef?.downloadURL{ (url, error) in
+//                guard let downloadURL = url else {
+//                    return
+//                }
+//            }
+//        }
+//    }
     
     @IBAction func process(){
         let view = self.storyboard?.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
