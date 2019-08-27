@@ -47,7 +47,6 @@ class AddArticleViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
 
         picker.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
-
         
         ref = Database.database().reference()   //Firebase Database 루트를 가리키는 레퍼런스
         storageRef = Storage.storage().reference()  ////Firebase Storage 루트를 가리키는 레퍼런스
@@ -73,6 +72,7 @@ class AddArticleViewController: UIViewController, UITextViewDelegate {
         ImageView.isUserInteractionEnabled = true
         ImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imagePicker)))
 
+        
         // Do any additional setup after loading the view.
     }
     
@@ -113,6 +113,16 @@ class AddArticleViewController: UIViewController, UITextViewDelegate {
     }
 
 
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange,
+                   replacementString string: String) -> Bool
+    {
+        let maxLength = 79
+        let currentString: NSString = textField.text as! NSString
+        let newString: NSString =
+            currentString.replacingCharacters(in: range, with: string) as NSString
+        return newString.length <= maxLength
+    }
+    
     
     @IBAction func imagePicker(_ sender: Any){
         
@@ -156,10 +166,30 @@ class AddArticleViewController: UIViewController, UITextViewDelegate {
     @IBAction func uploadPost(){
         let curRef = self.ref?.child("posts").childByAutoId()
         
-        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let userID = Auth.auth().currentUser?.uid
+        ref?.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSDictionary
+            let username = value?["name"] as? String ?? ""
+            // ...
+        }) { (error) in
+            print(error.localizedDescription)
+        }
         
         let image = self.ImageView.image
-        curRef?.child("uid").setValue(uid)
+        
+        if TextView.text! == "내용입력" || TextView.text! == "" {
+            let alert = UIAlertController(title: "내용을 입력하지 않으셨습니다", message: "내용을 입력해주세요.", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        if image == nil {
+            let alert = UIAlertController(title: "이미지를 추가하지 않았습니다.", message: "이미지를 추가해주세요.", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        
         curRef?.child("text").setValue(self.TextView.text)
         
         textViewDidEndEditing(TextView)
@@ -169,7 +199,7 @@ class AddArticleViewController: UIViewController, UITextViewDelegate {
         let date = Date()
         let IntValueOfDate = Int(date.timeIntervalSince1970)
         curRef?.child("date").setValue("\(IntValueOfDate)")
-        
+            
         let imageRef = storageRef?.child((curRef?.key)!+".jpg")
 
         guard let uploadData =
@@ -186,27 +216,8 @@ class AddArticleViewController: UIViewController, UITextViewDelegate {
             }
         })
         
-//        curRef?.child("imageURL").setValue()
-
         process()
     }
-    
-//    func uploadImage(){
-//        let data = Data()
-//        let riversRef = storageRef?.child("image/article"+".jpg")
-//
-//        let uploadTask = riversRef?.putData(data, metadata: nil) { (metadata, error) in
-//            guard let metadata = metadata else {
-//                return
-//            }
-//            let size = metadata.size
-//            riversRef?.downloadURL{ (url, error) in
-//                guard let downloadURL = url else {
-//                    return
-//                }
-//            }
-//        }
-//    }
     
     @IBAction func process(){
         let view = self.storyboard?.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
@@ -220,7 +231,7 @@ class AddArticleViewController: UIViewController, UITextViewDelegate {
         self.present(view , animated: true, completion: nil)
 
     }
-
+    
 
     /*
     // MARK: - Navigation
@@ -254,3 +265,4 @@ UINavigationControllerDelegate{
     //    }
     
 }
+

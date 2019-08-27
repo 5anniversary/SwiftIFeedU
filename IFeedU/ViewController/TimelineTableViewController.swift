@@ -50,7 +50,7 @@ class TimelineTableViewController: UITableViewController {
         refreshControl = UIRefreshControl()         //최신글을 불러 들이기 위한 refreshControl
         refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl?.addTarget(self, action: #selector(TimelineTableViewController.refresh), for: UIControl.Event.valueChanged)
-        
+
         backgroundColor = remoteconfig["splash_background"].stringValue
         color = remoteconfig["splash_color"].stringValue
         
@@ -58,33 +58,30 @@ class TimelineTableViewController: UITableViewController {
 
         self.FooterLabel.textColor = UIColor(hex: color)
         self.view.backgroundColor = UIColor(hex: backgroundColor)
-        //  self.navigationController?.navigationBar.tintColor = UIColor(hex: color)
-        //  Uncomment the following line to preserve selection between presentations
-        //  self.clearsSelectionOnViewWillAppear = false
-
-        //  Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        //  self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.posts.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineCell", for: indexPath) as! TimelineTableViewCell
-        let post = posts[indexPath.row]
-        cell.backgroundColor = UIColor(hex: backgroundColor)
-        cell.TextLabel?.text = post.text
-        cell.ImageView?.image = post.imageView.image
-        
-        return cell
-    }
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return self.posts.count
+//    }
+//
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineCell", for: indexPath) as! TimelineTableViewCell
+//        let post = posts[indexPath.row]
+//        cell.backgroundColor = UIColor(hex: backgroundColor)
+//        cell.TextLabel?.text = post.text
+//        cell.ImageView?.image = post.imageView.image
+//
+//        return cell
+//    }
 
     @IBAction func logoutButton(){
         let view = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
@@ -92,7 +89,22 @@ class TimelineTableViewController: UITableViewController {
         self.present(view , animated: true, completion: nil)
     }
 
-    @IBAction func loadPosts(){
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.posts.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineTableViewCell", for: indexPath) as! TimelineTableViewCell
+        let post = posts[indexPath.row]
+        tableView.rowHeight = 300
+        cell.backgroundColor = UIColor(hex: backgroundColor)
+        cell.TextLabel?.text = post.text
+        cell.ImageView?.image = post.imageView.image
+        
+        return cell
+    }
+    
+    func loadPosts(){
         var orderedQuery:DatabaseQuery?
         orderedQuery = ref?.child("posts").queryOrdered(byChild: "date")
         
@@ -106,7 +118,7 @@ class TimelineTableViewController: UITableViewController {
                 if let text = dicDatum["text"],
                     let date = Int(dicDatum["date"]!){
                     let post = Post(text,date)
-
+                    
                     //Get Image
                     let imageRef = self.storageRef?.child("\(snapshotDatum.key).jpg")
                     post.imageView.sd_setImage(with: imageRef!, placeholderImage: UIImage(), completion:{(image,error,cacheType,imageURL) in self.tableView.reloadData() })
@@ -120,7 +132,7 @@ class TimelineTableViewController: UITableViewController {
         })
     }
     
-    @IBAction func loadFreshPosts(){
+    func loadFreshPosts(){
         var filteredQuery:DatabaseQuery?
         if let latestDate = self.posts.first?.date{
             filteredQuery = ref?.child("posts").queryOrdered(byChild: "date").queryStarting(atValue: "\(latestDate + 1)")
@@ -137,7 +149,7 @@ class TimelineTableViewController: UITableViewController {
             for anyDatum in snapshotData{
                 let snapshotDatum = anyDatum as! DataSnapshot
                 let dicDatum = snapshotDatum.value as! [String:String]
-                if  let text = dicDatum["text"],
+                if let text = dicDatum["text"],
                     let date = Int(dicDatum["date"]!){
                     let post = Post(text,date)
                     
@@ -156,7 +168,7 @@ class TimelineTableViewController: UITableViewController {
             self.tableView.reloadData()
         })
     }
-    @IBAction func loadPastPosts(){
+    func loadPastPosts(){
         let pastPosts = self.loadedPosts.filter{$0.date < (self.posts.last?.date)!}
         let pastChunkPosts = pastPosts.prefix(g_NumPerOneLoad)
         
@@ -168,14 +180,14 @@ class TimelineTableViewController: UITableViewController {
     }
     
     // MARK: - Reload Posts
-    @IBAction func refresh(){
+    @objc func refresh(){
         print("refresh")
         self.loadFreshPosts()
         self.refreshControl?.endRefreshing()
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let height = scrollView.frame.size.height
+        let  height = scrollView.frame.size.height
         let contentYoffset = scrollView.contentOffset.y
         let distanceFromBottom = scrollView.contentSize.height + self.FooterLabel.frame.height - contentYoffset
         if distanceFromBottom < height {
@@ -183,61 +195,5 @@ class TimelineTableViewController: UITableViewController {
             loadPastPosts()
         }
     }
-
-    
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

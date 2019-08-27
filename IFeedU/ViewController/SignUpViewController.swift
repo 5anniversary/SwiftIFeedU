@@ -73,11 +73,30 @@ class SignUpViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
             print("email : "+self.emailSVC.text!+" password : "+self.passwordSVC.text!)
         }
+        close()
+    }
+    
+    func close(){
+        login()
+        
+        let view = self.storyboard?.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
+        
+        self.present(view , animated: true, completion: nil)
+    }
+    
+    func login(){
+        Auth.auth().signIn(withEmail: emailSVC.text!, password: passwordSVC.text!){(user, err) in
+            if(err != nil){
+                let alert = UIAlertController(title: "에러 발생", message: err.debugDescription, preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+            
+        }
+
     }
     
     @IBAction func cancelEvent(){
         self.dismiss(animated: true, completion: nil)
     }
-    
-    
 }
