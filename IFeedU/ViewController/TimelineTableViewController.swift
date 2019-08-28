@@ -68,20 +68,6 @@ class TimelineTableViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return self.posts.count
-//    }
-//
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineCell", for: indexPath) as! TimelineTableViewCell
-//        let post = posts[indexPath.row]
-//        cell.backgroundColor = UIColor(hex: backgroundColor)
-//        cell.TextLabel?.text = post.text
-//        cell.ImageView?.image = post.imageView.image
-//
-//        return cell
-//    }
 
     @IBAction func logoutButton(){
         let view = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
@@ -98,21 +84,39 @@ class TimelineTableViewController: UITableViewController {
         let post = posts[indexPath.row]
         tableView.rowHeight = 300
         cell.backgroundColor = UIColor(hex: backgroundColor)
+//        
+//        let date = DateFormatter()
+//        date.locale = Locale(identifier: "ko_KR")
+//        date.dateFormat = "yyyy.MM.dd HH:mm"
+//        
+//        cell.timelineTimeLabel?.text = post.date
         cell.TextLabel?.text = post.text
         cell.ImageView?.image = post.imageView.image
         
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let view = self.storyboard?.instantiateViewController(withIdentifier: "ArticleViewController") as? ArticleViewController
+        
+        let post = posts[indexPath.row]
+        
+        view?.mainText = post.text
+        view?.img = post.imageView.image
+        view?.timelineDate = post.date
+        
+        self.navigationController?.pushViewController(view!, animated: true)
+    }
+    
     func loadPosts(){
         var orderedQuery:DatabaseQuery?
         orderedQuery = ref?.child("posts").queryOrdered(byChild: "date")
-        
         orderedQuery?.observeSingleEvent(of: .value, with: { (snapshot) in
             var snapshotData = snapshot.children.allObjects
             snapshotData = snapshotData.reversed()
             
             for anyDatum in snapshotData{
+                self.posts.removeAll()
                 let snapshotDatum = anyDatum as! DataSnapshot
                 let dicDatum = snapshotDatum.value as! [String:String]
                 if let text = dicDatum["text"],
@@ -168,6 +172,7 @@ class TimelineTableViewController: UITableViewController {
             self.tableView.reloadData()
         })
     }
+    
     func loadPastPosts(){
         let pastPosts = self.loadedPosts.filter{$0.date < (self.posts.last?.date)!}
         let pastChunkPosts = pastPosts.prefix(g_NumPerOneLoad)
@@ -196,4 +201,14 @@ class TimelineTableViewController: UITableViewController {
         }
     }
 
+}
+
+extension Int {
+    var toDayTime : String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ko_KR")
+        dateFormatter.dateFormat = "yyyy.MM.dd HH:mm"
+        let date = Date(timeIntervalSince1970: Double(self)/1000)
+        return dateFormatter.string(from:date)
+    }
 }

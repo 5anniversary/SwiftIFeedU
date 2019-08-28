@@ -15,6 +15,7 @@ class Post {
     var text : String
     var date : Int
     var imageView = UIImageView()
+    var refcode : String!
     
     init(_ text:String, _ date:Int){
         self.text = text

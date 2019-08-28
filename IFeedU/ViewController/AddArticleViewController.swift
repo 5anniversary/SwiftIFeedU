@@ -15,7 +15,8 @@ import Fusuma
 class AddArticleViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var ImageView: UIImageView!
-    @IBOutlet weak var TextView: UITextView!
+//    @IBOutlet weak var TextView: UITextView!
+    @IBOutlet weak var TextView: UITextField!
     @IBOutlet weak var ImageAdd: UIButton!
     
     let picker = UIImagePickerController()
@@ -84,22 +85,15 @@ class AddArticleViewController: UIViewController, UITextViewDelegate {
     func dismissKeyboard(){
         TextView.resignFirstResponder()
     }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if(textView.text == ""){
-            textView.textColor = UIColor.lightGray
-        }
-        textView.resignFirstResponder()
-    }
-    
+        
     func textViewDidBeginEditing(_ textView: UITextView) {
         textView.becomeFirstResponder()
     }
     override func viewDidAppear(_ animated: Bool) {
-        self.TextView.isEditable = true
+//        self.TextView.isEditable = true
     }
     override func viewDidDisappear(_ animated: Bool) {
-        self.TextView.isEditable = false
+//        self.TextView.isEditable = false
     }
     
     //MARK: - ImageView
@@ -117,7 +111,7 @@ class AddArticleViewController: UIViewController, UITextViewDelegate {
                    replacementString string: String) -> Bool
     {
         let maxLength = 79
-        let currentString: NSString = textField.text as! NSString
+        let currentString: NSString = TextView.text! as NSString
         let newString: NSString =
             currentString.replacingCharacters(in: range, with: string) as NSString
         return newString.length <= maxLength
@@ -166,24 +160,16 @@ class AddArticleViewController: UIViewController, UITextViewDelegate {
     @IBAction func uploadPost(){
         let curRef = self.ref?.child("posts").childByAutoId()
         
-        let userID = Auth.auth().currentUser?.uid
-        ref?.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-            // Get user value
-            let value = snapshot.value as? NSDictionary
-            let username = value?["name"] as? String ?? ""
-            // ...
-        }) { (error) in
-            print(error.localizedDescription)
-        }
-        
         let image = self.ImageView.image
         
+        // 내용이 입력되지 않았을 경우 알람
         if TextView.text! == "내용입력" || TextView.text! == "" {
             let alert = UIAlertController(title: "내용을 입력하지 않으셨습니다", message: "내용을 입력해주세요.", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
         
+        // 이미지가 추가되지 않았을 경우 알람
         if image == nil {
             let alert = UIAlertController(title: "이미지를 추가하지 않았습니다.", message: "이미지를 추가해주세요.", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil))
@@ -191,10 +177,7 @@ class AddArticleViewController: UIViewController, UITextViewDelegate {
         }
         
         curRef?.child("text").setValue(self.TextView.text)
-        
-        textViewDidEndEditing(TextView)
-
-//        let imagesRef = storageRef?.child("images")
+        curRef?.child("refcode").setValue(curRef?.key)
         
         let date = Date()
         let IntValueOfDate = Int(date.timeIntervalSince1970)
@@ -216,10 +199,10 @@ class AddArticleViewController: UIViewController, UITextViewDelegate {
             }
         })
         
-        process()
+        processToMainViewController()
     }
     
-    @IBAction func process(){
+    @IBAction func processToMainViewController(){
         let view = self.storyboard?.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
         
         self.present(view , animated: true, completion: nil)
@@ -244,6 +227,7 @@ class AddArticleViewController: UIViewController, UITextViewDelegate {
     */
 
 }
+
 extension AddArticleViewController : UIImagePickerControllerDelegate,
 UINavigationControllerDelegate{
     

@@ -11,11 +11,11 @@ import UIKit
 class ReplyTableViewCell: UITableViewCell {
 
     //    닉네임
-    @IBOutlet weak var ReplyName: UITextView?
+    @IBOutlet weak var ReplyName: UILabel?
     //    댓글
-    @IBOutlet weak var ReplyText: UITextView?
+    @IBOutlet weak var ReplyText: UILabel?
     //    날짜
-    @IBOutlet weak var ReplyDate: UITextView?
+    @IBOutlet weak var ReplyDate: UILabel?
 
     
     override func awakeFromNib() {

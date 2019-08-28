@@ -12,9 +12,9 @@ import UIKit
 class Reply {
     var replyname : String
     var replytext : String
-    var replydate : Int
+    var replydate : Date
     
-    init(_ replyname : String,_ replytext:String, _ replydate:Int){
+    init(_ replyname : String,_ replytext:String, _ replydate:Date){
         self.replyname = replyname
         self.replytext = replytext
         self.replydate = replydate
