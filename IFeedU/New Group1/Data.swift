@@ -13,11 +13,12 @@ let g_NumPerOneLoad = 3 //한 Load에 불러올 게시글의 수
 
 class Post {
     var text : String
-    var date : Int
+    var date : Double
     var imageView = UIImageView()
-    var refcode : String!
+    var name : String!
     
-    init(_ text:String, _ date:Int){
+    init(_ text:String, _ date:Double){
+//        self.name = name
         self.text = text
         self.date = date
     }

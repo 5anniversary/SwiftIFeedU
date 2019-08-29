@@ -176,12 +176,22 @@ class AddArticleViewController: UIViewController, UITextViewDelegate {
             self.present(alert, animated: true, completion: nil)
         }
         
+        let userID = Auth.auth().currentUser?.uid
+        self.ref?.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSDictionary
+            let username = value?["name"] as? String ?? ""
+            curRef?.child("replyname").setValue(username)
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        
         curRef?.child("text").setValue(self.TextView.text)
         curRef?.child("refcode").setValue(curRef?.key)
         
         let date = Date()
-        let IntValueOfDate = Int(date.timeIntervalSince1970)
-        curRef?.child("date").setValue("\(IntValueOfDate)")
+        let DoubleValueOfDate = Double(date.timeIntervalSince1970)
+        curRef?.child("date").setValue("\(DoubleValueOfDate)")
             
         let imageRef = storageRef?.child((curRef?.key)!+".jpg")
 

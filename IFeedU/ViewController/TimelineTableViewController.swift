@@ -90,6 +90,7 @@ class TimelineTableViewController: UITableViewController {
 //        date.dateFormat = "yyyy.MM.dd HH:mm"
 //        
 //        cell.timelineTimeLabel?.text = post.date
+        cell.nameLabel?.text = post.name
         cell.TextLabel?.text = post.text
         cell.ImageView?.image = post.imageView.image
         
@@ -119,8 +120,8 @@ class TimelineTableViewController: UITableViewController {
                 self.posts.removeAll()
                 let snapshotDatum = anyDatum as! DataSnapshot
                 let dicDatum = snapshotDatum.value as! [String:String]
-                if let text = dicDatum["text"],
-                    let date = Int(dicDatum["date"]!){
+                if  let text = dicDatum["text"],
+                    let date = Double(dicDatum["date"]!){
                     let post = Post(text,date)
                     
                     //Get Image
@@ -153,17 +154,15 @@ class TimelineTableViewController: UITableViewController {
             for anyDatum in snapshotData{
                 let snapshotDatum = anyDatum as! DataSnapshot
                 let dicDatum = snapshotDatum.value as! [String:String]
-                if let text = dicDatum["text"],
-                    let date = Int(dicDatum["date"]!){
-                    let post = Post(text,date)
+                if  let text = dicDatum["text"],
+                    let date = Double(dicDatum["date"]!){
+                    let post = Post(text, date)
                     
                     //Get Image from URL
                     let imageRef = self.storageRef?.child("\(snapshotDatum.key).jpg")
                     post.imageView.sd_setImage(with: imageRef!, placeholderImage: UIImage())
                     
                     freshPostsChunk += [post]
-                    
-                    
                     
                 }
             }
