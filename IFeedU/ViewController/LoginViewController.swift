@@ -58,9 +58,7 @@ class LoginViewController: UIViewController {
     @IBAction func loginEvent(){
         Auth.auth().signIn(withEmail: emailLVC.text!, password: passwordLVC.text!){(user, err) in
             if(err != nil){
-                let alert = UIAlertController(title: "에러 발생", message: err.debugDescription, preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                self.alert(title: "에러발생", message: err.debugDescription)
             }
             
         }
@@ -68,7 +66,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func presentSignUp() {
         let view = self.storyboard?.instantiateViewController(withIdentifier: "SignUpViewController") as! SignUpViewController
-        
+        view.modalPresentationStyle = .overFullScreen
         self.present(view, animated: true, completion: nil)
     }
 }

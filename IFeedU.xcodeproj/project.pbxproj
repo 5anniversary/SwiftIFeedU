@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E457769232A6A7100E66EFD /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E457768232A6A7100E66EFD /* UIColor+Extension.swift */; };
+		5E45776B232A715500E66EFD /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E45776A232A715500E66EFD /* UIViewController+Extension.swift */; };
 		5E4F9501230FDDAC00D6203F /* AddArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4F9500230FDDAC00D6203F /* AddArticleViewController.swift */; };
 		5E61E8C22307FC2C0078E1D8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E61E8C12307FC2C0078E1D8 /* LoginViewController.swift */; };
 		5E61E8C42307FC520078E1D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E61E8C32307FC520078E1D8 /* ViewController.swift */; };
@@ -22,7 +24,7 @@
 		5EAC12F523054B5F005472A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC12F323054B5F005472A4 /* Main.storyboard */; };
 		5EAC12F723054B6C005472A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC12F623054B6C005472A4 /* Assets.xcassets */; };
 		5EAC12FA23054B6C005472A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC12F823054B6C005472A4 /* LaunchScreen.storyboard */; };
-		5EAC130223057051005472A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC130123057051005472A4 /* GoogleService-Info.plist */; };
+		5EAE7921232922770025E3C3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EAE7920232922760025E3C3 /* GoogleService-Info.plist */; };
 		5EEDF5842305B64C00C2DD57 /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EEDF5832305B64C00C2DD57 /* RemoteConfigDefaults.plist */; };
 		B8CD9C37A83826185BC39317 /* Pods_IFeedU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3334F5ECFBD6210AAF46F64B /* Pods_IFeedU.framework */; };
 /* End PBXBuildFile section */
@@ -30,6 +32,8 @@
 /* Begin PBXFileReference section */
 		16A56D470C7CA4D9112EEB8F /* Pods-IFeedU.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IFeedU.debug.xcconfig"; path = "Target Support Files/Pods-IFeedU/Pods-IFeedU.debug.xcconfig"; sourceTree = "<group>"; };
 		3334F5ECFBD6210AAF46F64B /* Pods_IFeedU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IFeedU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E457768232A6A7100E66EFD /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		5E45776A232A715500E66EFD /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		5E4F9500230FDDAC00D6203F /* AddArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddArticleViewController.swift; sourceTree = "<group>"; };
 		5E61E8C12307FC2C0078E1D8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5E61E8C32307FC520078E1D8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = "../New Group/ViewController.swift"; sourceTree = "<group>"; };
@@ -47,7 +51,7 @@
 		5EAC12F623054B6C005472A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5EAC12F923054B6C005472A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5EAC12FB23054B6C005472A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5EAC130123057051005472A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../../../../System/Volumes/Data/Users/user/Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5EAE7920232922760025E3C3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../SwiftIFeedU/IFeedU/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5EEDF5832305B64C00C2DD57 /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
 		DD3BF706B4D0913933C9A266 /* Pods-IFeedU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IFeedU.release.xcconfig"; path = "Target Support Files/Pods-IFeedU/Pods-IFeedU.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,6 +92,15 @@
 			path = "New Group1";
 			sourceTree = "<group>";
 		};
+		5E457767232A6A3000E66EFD /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				5E457768232A6A7100E66EFD /* UIColor+Extension.swift */,
+				5E45776A232A715500E66EFD /* UIViewController+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		5E6668F923138C7400383667 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +131,7 @@
 		5EAC12EE23054B5F005472A4 /* IFeedU */ = {
 			isa = PBXGroup;
 			children = (
+				5E457767232A6A3000E66EFD /* Extension */,
 				5E6668F923138C7400383667 /* Cell */,
 				5E3E47DA230C1AE100D4F393 /* Model */,
 				5E3E47D9230C1AD600D4F393 /* ViewController */,
@@ -125,8 +139,8 @@
 				5EAC12F323054B5F005472A4 /* Main.storyboard */,
 				5EAC12F623054B6C005472A4 /* Assets.xcassets */,
 				5EAC12F823054B6C005472A4 /* LaunchScreen.storyboard */,
+				5EAE7920232922760025E3C3 /* GoogleService-Info.plist */,
 				5EAC12FB23054B6C005472A4 /* Info.plist */,
-				5EAC130123057051005472A4 /* GoogleService-Info.plist */,
 				5EEDF5832305B64C00C2DD57 /* RemoteConfigDefaults.plist */,
 			);
 			path = IFeedU;
@@ -212,7 +226,7 @@
 			files = (
 				5EAC12FA23054B6C005472A4 /* LaunchScreen.storyboard in Resources */,
 				5EEDF5842305B64C00C2DD57 /* RemoteConfigDefaults.plist in Resources */,
-				5EAC130223057051005472A4 /* GoogleService-Info.plist in Resources */,
+				5EAE7921232922770025E3C3 /* GoogleService-Info.plist in Resources */,
 				5EAC12F723054B6C005472A4 /* Assets.xcassets in Resources */,
 				5EAC12F523054B5F005472A4 /* Main.storyboard in Resources */,
 			);
@@ -288,12 +302,14 @@
 				5E61E8CC23081FDD0078E1D8 /* TimelineTableViewCell.swift in Sources */,
 				5E4F9501230FDDAC00D6203F /* AddArticleViewController.swift in Sources */,
 				5E61E8D323083DE60078E1D8 /* Data.swift in Sources */,
+				5E45776B232A715500E66EFD /* UIViewController+Extension.swift in Sources */,
 				5E61E8C42307FC520078E1D8 /* ViewController.swift in Sources */,
 				5E6668F823138BA100383667 /* ReplyTableViewCell.swift in Sources */,
 				5E61E8C22307FC2C0078E1D8 /* LoginViewController.swift in Sources */,
 				5E61E8C62307FC620078E1D8 /* SignUpViewController.swift in Sources */,
 				5E61E8C823081E6A0078E1D8 /* TabBarViewController.swift in Sources */,
 				5E75CEB62311038900347258 /* ArticleViewController.swift in Sources */,
+				5E457769232A6A7100E66EFD /* UIColor+Extension.swift in Sources */,
 				5EAC12F023054B5F005472A4 /* AppDelegate.swift in Sources */,
 				5E61E8CE23081FFC0078E1D8 /* TimelineTableViewController.swift in Sources */,
 			);
@@ -372,7 +388,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -427,7 +443,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

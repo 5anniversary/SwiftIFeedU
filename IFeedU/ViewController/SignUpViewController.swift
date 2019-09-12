@@ -23,11 +23,7 @@ class SignUpViewController: UIViewController {
     var backgroundColor : String?
     var color : String?
     var ref : DatabaseReference!
-    
-    let alert = UIAlertController(title: "title", message: "message", preferredStyle: UIAlertController.Style.alert)
-    let signUpError = UIAlertAction(title: "Error", style: .default, handler: nil)
-    
-    
+       
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,7 +50,6 @@ class SignUpViewController: UIViewController {
     
     @IBAction func signUpEvent(_ sender: AnyObject){
         if emailSVC.text! == "" || passwordSVC.text! == "" || nameSVC.text! == "" {
-            print("정상적으로 입력이 되지 않았습니다.")
             let alert = UIAlertController(title: "입력 불충분", message: "이메일, 이름, 비밀번호 중 하나 이상을 입력하지 않았습니다.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
                 NSLog("The \"OK\" alert occured.")
@@ -71,25 +66,22 @@ class SignUpViewController: UIViewController {
                 NSLog("The \"OK\" alert occured.")
             }))
             self.present(alert, animated: true, completion: nil)
-            print("email : "+self.emailSVC.text!+" password : "+self.passwordSVC.text!)
         }
         close()
     }
     
     func close(){
         login()
-        
-        let view = self.storyboard?.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
-        
-        self.present(view , animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
+//        let view = self.storyboard?.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
+//        view.modalPresentationStyle = .overFullScreen
+//        self.present(view , animated: true, completion: nil)
     }
     
     func login(){
         Auth.auth().signIn(withEmail: emailSVC.text!, password: passwordSVC.text!){(user, err) in
             if(err != nil){
-                let alert = UIAlertController(title: "에러 발생", message: err.debugDescription, preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                self.alert(title: "에러발생", message: err.debugDescription)
             }
             
         }

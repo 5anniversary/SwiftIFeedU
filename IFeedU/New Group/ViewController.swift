@@ -38,17 +38,13 @@ class ViewController: UIViewController {
             }
             self.displayWelcome()
         }
-        
         self.view.backgroundColor = UIColor(hex: backgroundColor!)
-        
         
         self.view.addSubview(box)
         box.snp.makeConstraints{ (make) in
             make.center.equalTo(self.view)
         }
         box.image = UIImage(named: "sticks")
-        
-        
     }
     
     func displayWelcome(){
@@ -59,40 +55,19 @@ class ViewController: UIViewController {
         let message = remoteConfig["splash_message"].stringValue
         
         if(caps){
-            let alert = UIAlertController(title: "공지사항", message: message, preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: { (action) in
-                exit(0)
-            }))
-            self.present(alert, animated: true, completion: nil)
+//            let alert = UIAlertController(title: "공지사항", message: message, preferredStyle: UIAlertController.Style.alert)
+//            alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: { (action) in
+//                exit(0)
+//            }))
+//            self.present(alert, animated: true, completion: nil)
+            alert(title: "공지사항", message: message!)
         } else {
             let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+            loginVC.modalPresentationStyle = .overFullScreen
             
             self.present(loginVC, animated: false, completion: nil)
         }
         self.view.backgroundColor = UIColor(hex: backgroundColor!)
     }
     
-}
-
-
-extension UIColor {
-    convenience init(hex: String) {
-        let scanner = Scanner(string: hex)
-        
-        scanner.scanLocation = 1
-        
-        var rgbValue: UInt64 = 0
-        
-        scanner.scanHexInt64(&rgbValue)
-        
-        let r = (rgbValue & 0xff0000) >> 16
-        let g = (rgbValue & 0xff00) >> 8
-        let b = rgbValue & 0xff
-        
-        self.init(
-            red: CGFloat(r) / 0xff,
-            green: CGFloat(g) / 0xff,
-            blue: CGFloat(b) / 0xff, alpha: 1
-        )
-    }
 }

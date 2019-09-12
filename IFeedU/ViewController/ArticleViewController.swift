@@ -53,11 +53,8 @@ class ArticleViewController: UIViewController {
         textView.text = mainText
         imageView.image = img
         
-        loadReply()
+//        loadReply()
         
-        refreshControl = UIRefreshControl()         //최신글을 불러 들이기 위한 refreshControl
-        refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControl?.addTarget(self, action: #selector(ArticleViewController.refresh), for: UIControl.Event.valueChanged)
         
         replyButton.backgroundColor = UIColor(hex: color)
         replyButton.tintColor = UIColor(white: 1.0, alpha: 1.0)
@@ -159,7 +156,6 @@ class ArticleViewController: UIViewController {
         func refresh(){
             print("refresh")
             self.loadFreshReplys()
-            self.refreshControl?.endRefreshing()
         }
         
         func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -211,7 +207,7 @@ class ArticleViewController: UIViewController {
 }
 
 extension ArticleViewController : UITableViewDelegate, UITableViewDataSource{
-   
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.replys.count
     }
