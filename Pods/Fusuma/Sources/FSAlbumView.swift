@@ -541,7 +541,7 @@ private extension FSAlbumView {
 
     func assetsAtIndexPaths(_ indexPaths: [IndexPath]) -> [PHAsset] {
         if indexPaths.count == 0 { return [] }
-
+        
         var assets: [PHAsset] = []
         assets.reserveCapacity(indexPaths.count)
 

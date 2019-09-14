@@ -24,8 +24,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        마지막 빌드때 주석 취소시킬 것
-        try! Auth.auth().signOut()
+//        try! Auth.auth().signOut()
         
         let statusBar = UIView()
         self.view.addSubview(statusBar)
@@ -50,6 +49,7 @@ class LoginViewController: UIViewController {
         Auth.auth().addStateDidChangeListener{ (auth, user) in
             if(user != nil){
                 let view = self.storyboard?.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController?
+                view?.modalPresentationStyle = .fullScreen
                 self.present(view!, animated: true, completion: nil)
             }
         }
@@ -58,7 +58,7 @@ class LoginViewController: UIViewController {
     @IBAction func loginEvent(){
         Auth.auth().signIn(withEmail: emailLVC.text!, password: passwordLVC.text!){(user, err) in
             if(err != nil){
-                self.alert(title: "에러발생", message: err.debugDescription)
+                self.defaultAlert(title: "에러발생", message: err.debugDescription)
             }
             
         }
@@ -66,7 +66,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func presentSignUp() {
         let view = self.storyboard?.instantiateViewController(withIdentifier: "SignUpViewController") as! SignUpViewController
-        view.modalPresentationStyle = .overFullScreen
+        view.modalPresentationStyle = .fullScreen
         self.present(view, animated: true, completion: nil)
     }
 }

@@ -50,17 +50,11 @@ class ViewController: UIViewController {
     func displayWelcome(){
         
         let backgroundColor : String! = remoteConfig["splash_background"].stringValue
-        let color = remoteConfig["splash_color"].stringValue
         let caps = remoteConfig["splash_message_caps"].boolValue
         let message = remoteConfig["splash_message"].stringValue
         
         if(caps){
-//            let alert = UIAlertController(title: "공지사항", message: message, preferredStyle: UIAlertController.Style.alert)
-//            alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: { (action) in
-//                exit(0)
-//            }))
-//            self.present(alert, animated: true, completion: nil)
-            alert(title: "공지사항", message: message!)
+            exitAlert(title: "공지사항", message: message!)
         } else {
             let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
             loginVC.modalPresentationStyle = .overFullScreen

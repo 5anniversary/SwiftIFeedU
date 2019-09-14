@@ -11,6 +11,7 @@ import Firebase
 import FirebaseDatabase
 import FirebaseStorage
 import FirebaseUI
+import Fusuma
 
 class ArticleViewController: UIViewController {
 
@@ -30,37 +31,47 @@ class ArticleViewController: UIViewController {
     var backgroundColor : String!
     var color : String!
     
-    var mainText : String?      //
-    var timelineDate : Double?  //
+    var mainText : String?
+    var timelineDate : Double?
     var intTimelineDate : Int!
     var img : UIImage?
     
+    lazy var rightBarButton : UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "삭제", style: .plain, target: self, action: #selector(deleteArticle))
+        
+        return button
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         intTimelineDate = Int(timelineDate!)
         
         ref = Database.database().reference()   //Firebase Database 루트를 가리키는 레퍼런스
-        storageRef = Storage.storage().reference()  ////Firebase Storage 루트를 가리키는 레퍼런스
+        storageRef = Storage.storage().reference()  //Firebase Storage 루트를 가리키는 레퍼런스
         
         backgroundColor = remoteconfig["splash_background"].stringValue
         color = remoteconfig["splash_color"].stringValue
 
         self.view.backgroundColor = UIColor(hex: backgroundColor)
         tableView.backgroundColor = UIColor(hex: backgroundColor)
-        tableView.tintColor = UIColor(hex: color)
         
         textView.text = mainText
         imageView.image = img
         
-//        loadReply()
-        
-        
         replyButton.backgroundColor = UIColor(hex: color)
         replyButton.tintColor = UIColor(white: 1.0, alpha: 1.0)
-        
+                
         replyButton.addTarget(self, action: #selector(uploadReply), for: .touchUpInside)
         replyTextField.backgroundColor = UIColor(hex: backgroundColor)
+        
+        tableView.separatorStyle = .none
+        
+        replyTextField.delegate = self as? UITextFieldDelegate
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+       
         // Do any additional setup after loading the view.
     }
     
@@ -79,8 +90,20 @@ class ArticleViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         self.textView.isEditable = false
     }
+       
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
     
+    @objc func keyboardWillShow(_ sender: Notification) {
+        self.view.frame.origin.y = -300   // Move view 300 points upward
+    }
     
+    @objc func keyboardWillHide(_ sender: Notification) {
+        self.view.frame.origin.y = 0 // Move view to original position
+    }
+
     func loadReply(){
         var orderedQuery:DatabaseQuery?
 //        orderedQuery = ref?.child("replys").child("\(String(describing: intTimelineDate))").queryOrdered(byChild: "replydate")
@@ -152,7 +175,6 @@ class ArticleViewController: UIViewController {
             }
         }
         
-        // MARK: - Reload Posts
         func refresh(){
             print("refresh")
             self.loadFreshReplys()
@@ -187,9 +209,7 @@ class ArticleViewController: UIViewController {
         }
 
         if replyTextField.text! == "" {
-            let alert = UIAlertController(title: "댓글을 입력하지 않으셨습니다", message: "댓글을 입력해주세요.", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            defaultAlert(title: "댓글을 입력하지 않았습니다.", message: "댓글을 입력해주세요.")
         }
 
         curRef?.child("replytext").setValue(self.replyTextField.text)
@@ -203,24 +223,27 @@ class ArticleViewController: UIViewController {
         loadReply()
     }
     
+    @IBAction func deleteArticle(){
+        
+    }
     
 }
 
-extension ArticleViewController : UITableViewDelegate, UITableViewDataSource{
-    
+extension ArticleViewController : UITableViewDataSource{
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.replys.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
         let replycell = tableView.dequeueReusableCell(withIdentifier: "ReplyTableViewCell", for: indexPath) as! ReplyTableViewCell
         let reply = replys[indexPath.row]
 //        var date = Date()
 //        cell.ReplyDate?.text = reply.replydate
         replycell.ReplyName?.text = reply.replyname
         replycell.ReplyText?.text = reply.replytext
-        
+
         return replycell
     }
 }

@@ -32,12 +32,6 @@ class TimelineTableViewController: UITableViewController {
         
         return button
     }()
-
-//    lazy var rigthBarButton : UIBarButtonItem = {
-//        let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButton))
-//
-//        return button
-//    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +49,9 @@ class TimelineTableViewController: UITableViewController {
         color = remoteconfig["splash_color"].stringValue
         
         self.navigationItem.leftBarButtonItem = self.leftBarButton
-
+        
+        self.tableView.separatorStyle = .none
+        
         self.FooterLabel.textColor = UIColor(hex: color)
         self.view.backgroundColor = UIColor(hex: backgroundColor)
     }
@@ -64,15 +60,13 @@ class TimelineTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
     
-    // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
     @IBAction func logoutButton(){
-        let view = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
         try! Auth.auth().signOut()
-        self.present(view , animated: true, completion: nil)
+        dismiss(animated: true)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -82,14 +76,10 @@ class TimelineTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineTableViewCell", for: indexPath) as! TimelineTableViewCell
         let post = posts[indexPath.row]
-        tableView.rowHeight = 300
+        tableView.rowHeight = 400
         cell.backgroundColor = UIColor(hex: backgroundColor)
-//        
-//        let date = DateFormatter()
-//        date.locale = Locale(identifier: "ko_KR")
-//        date.dateFormat = "yyyy.MM.dd HH:mm"
-//        
-//        cell.timelineTimeLabel?.text = post.date
+        cell.tintColor = UIColor(hex: color)
+
         cell.nameLabel?.text = post.name
         cell.TextLabel?.text = post.text
         cell.ImageView?.image = post.imageView.image
@@ -183,7 +173,6 @@ class TimelineTableViewController: UITableViewController {
         }
     }
     
-    // MARK: - Reload Posts
     @objc func refresh(){
         print("refresh")
         self.loadFreshPosts()

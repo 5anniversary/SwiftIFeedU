@@ -50,22 +50,14 @@ class SignUpViewController: UIViewController {
     
     @IBAction func signUpEvent(_ sender: AnyObject){
         if emailSVC.text! == "" || passwordSVC.text! == "" || nameSVC.text! == "" {
-            let alert = UIAlertController(title: "입력 불충분", message: "이메일, 이름, 비밀번호 중 하나 이상을 입력하지 않았습니다.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
-                NSLog("The \"OK\" alert occured.")
-            }))
-            self.present(alert, animated: true, completion: nil)
+            defaultAlert(title: "입력 불충분", message: "이메일, 이름, 비밀번호 중 하나 이상을 입력하지 않았습니다.")
             return
         }
         Auth.auth().createUser(withEmail: emailSVC.text!, password: passwordSVC.text!) { (user, err) in
             let uid = user?.user.uid
             self.ref = Database.database().reference()
             self.ref.child("users").child(uid!).setValue(["name": self.nameSVC.text!])
-            let alert = UIAlertController(title: "회원가입", message: "완료", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
-                NSLog("The \"OK\" alert occured.")
-            }))
-            self.present(alert, animated: true, completion: nil)
+            self.defaultAlert(title: "회원가입", message: "완료")
         }
         close()
     }
@@ -73,17 +65,13 @@ class SignUpViewController: UIViewController {
     func close(){
         login()
         dismiss(animated: true, completion: nil)
-//        let view = self.storyboard?.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
-//        view.modalPresentationStyle = .overFullScreen
-//        self.present(view , animated: true, completion: nil)
     }
     
     func login(){
         Auth.auth().signIn(withEmail: emailSVC.text!, password: passwordSVC.text!){(user, err) in
             if(err != nil){
-                self.alert(title: "에러발생", message: err.debugDescription)
+                self.defaultAlert(title: "에러발생", message: err.debugDescription)
             }
-            
         }
 
     }
