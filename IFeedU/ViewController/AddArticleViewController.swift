@@ -12,15 +12,13 @@ import FirebaseDatabase
 import FirebaseStorage
 import Fusuma
 
-class AddArticleViewController: UIViewController, FusumaDelegate {
+class AddArticleViewController: UIViewController {
 
-    @IBOutlet weak var AddImageCollectionView: UICollectionView!
-    @IBOutlet weak var ImageView: UIImageView!
-    @IBOutlet weak var TextView: UITextField!
-    @IBOutlet weak var pageView: UIPageControl!
+    @IBOutlet weak var addImageCollectionView: UICollectionView!
+    @IBOutlet weak var addImageView: UIImageView!
+    @IBOutlet weak var addTextView: UITextField!
+    @IBOutlet weak var addPageView: UIPageControl!
     
-    let picker = UIImagePickerController()
-
     var image = UIImage()
     
     var ref:DatabaseReference?
@@ -63,8 +61,8 @@ class AddArticleViewController: UIViewController, FusumaDelegate {
         self.view.backgroundColor = UIColor(hex: backgroundColor)
         statusBar.backgroundColor = UIColor(hex: barColor)
                 
-        ImageView.isUserInteractionEnabled = true
-        ImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(fusumaImagePicker)))
+        addImageView.isUserInteractionEnabled = true
+        addImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(fusumaImagePicker)))
 
         // Do any additional setup after loading the view.
     }
@@ -74,7 +72,7 @@ class AddArticleViewController: UIViewController, FusumaDelegate {
     }
     
     func dismissKeyboard(){
-        TextView.resignFirstResponder()
+        addTextView.resignFirstResponder()
     }
         
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -96,61 +94,11 @@ class AddArticleViewController: UIViewController, FusumaDelegate {
         self.navigationController?.isNavigationBarHidden = false
     }
 
-    // Mark : Fusuma
-    @IBAction func fusumaImagePicker(){
-        let fusuma = FusumaViewController()
-
-        fusuma.delegate = self
-        fusuma.cropHeightRatio = 1.0
-        fusuma.allowMultipleSelection = true
-        fusuma.availableModes = [.library, .video, .camera]
-        fusuma.photoSelectionLimit = 4
-        fusumaSavesImage = true
-
-        present(fusuma, animated: true, completion: nil)
-    }
-    
-    func fusumaImageSelected(_ image: UIImage, source: FusumaMode) {
-        switch source {
-        case .camera:
-            print("Image captured from Camera")
-        case .library:
-            print("Image selected from Camera Roll")
-        default:
-            print("Image selected")
-        }
-
-        ImageView.image = image
-    }
-    
-    func fusumaMultipleImageSelected(_ images: [UIImage], source: FusumaMode) {
-        print("Number of selection images: \(images.count)")
-
-        var count: Double = 0
-
-        for image in images {
-            DispatchQueue.main.asyncAfter(deadline: .now() + (3.0 * count)) {
-                self.ImageView.image = image
-                print("w: \(image.size.width) - h: \(image.size.height)")
-            }
-
-            count += 1
-        }
-    }
-    
-    func fusumaVideoCompleted(withFileURL fileURL: URL) {
-        
-    }
-    
-    func fusumaCameraRollUnauthorized() {
-        
-    }
-
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange,
                    replacementString string: String) -> Bool
     {
         let maxLength = 79
-        let currentString: NSString = TextView.text! as NSString
+        let currentString: NSString = addTextView.text! as NSString
         let newString: NSString =
             currentString.replacingCharacters(in: range, with: string) as NSString
         return newString.length <= maxLength
@@ -160,17 +108,16 @@ class AddArticleViewController: UIViewController, FusumaDelegate {
     @IBAction func uploadPost(){
         let curRef = self.ref?.child("posts").childByAutoId()
         
-        let image = self.ImageView.image
+        let image = self.addImageView.image
         
         // 내용이 입력되지 않았을 경우 알람
-        if TextView.text! == "내용입력" || TextView.text! == "" {
+        if addTextView.text! == "내용입력" || addTextView.text! == "" {
             defaultAlert(title: "내용을 입력하지 않았습니다.", message: "내용을 입력해주세요.")
         }
         
         // 이미지가 추가되지 않았을 경우 알람
         if image == nil {
             defaultAlert(title: "이미지를 추가하지 않았습니다.", message: "이미지를 추가해주세요.")
-
         }
         
         let userID = Auth.auth().currentUser?.uid
@@ -183,7 +130,7 @@ class AddArticleViewController: UIViewController, FusumaDelegate {
             print(error.localizedDescription)
         }
         
-        curRef?.child("text").setValue(self.TextView.text)
+        curRef?.child("text").setValue(self.addTextView.text)
         curRef?.child("refcode").setValue(curRef?.key)
         
         let date = Date()
@@ -216,17 +163,56 @@ class AddArticleViewController: UIViewController, FusumaDelegate {
     
 }
 
-extension AddArticleViewController : UICollectionViewDelegate, UICollectionViewDataSource{
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        if let vc = cell.viewWithTag(111) as? UIImageView{
-            vc.image = imgArr[indexPath.row]
+// MARK: -FusumaDelegate
+extension AddArticleViewController : FusumaDelegate {
+    
+    @IBAction func fusumaImagePicker(){
+        let fusuma = FusumaViewController()
+
+        fusuma.delegate = self
+        fusuma.cropHeightRatio = 1.0
+        fusuma.allowMultipleSelection = true
+        fusuma.availableModes = [.library, .video, .camera]
+        fusuma.photoSelectionLimit = 4
+        fusumaSavesImage = true
+
+        present(fusuma, animated: true, completion: nil)
+    }
+    
+    func fusumaImageSelected(_ image: UIImage, source: FusumaMode) {
+        switch source {
+        case .camera:
+            print("Image captured from Camera")
+        case .library:
+            print("Image selected from Camera Roll")
+        default:
+            print("Image selected")
+        }
+
+        addImageView.image = image
+    }
+    
+    func fusumaMultipleImageSelected(_ images: [UIImage], source: FusumaMode) {
+        print("Number of selection images: \(images.count)")
+
+        var count: Double = 0
+
+        for image in images {
+            DispatchQueue.main.asyncAfter(deadline: .now() + (3.0 * count)) {
+                self.addImageView.image = image
+                print("w: \(image.size.width) - h: \(image.size.height)")
+            }
+
+            count += 1
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
-    }
+    func fusumaVideoCompleted(withFileURL fileURL: URL) {
         
-}
+    }
+    
+    func fusumaCameraRollUnauthorized() {
+        
+    }
 
+}

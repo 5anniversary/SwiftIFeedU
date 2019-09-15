@@ -371,16 +371,16 @@
                         <viewLayoutGuide key="safeArea" id="we7-5l-EhE"/>
                     </view>
                     <connections>
-                        <outlet property="imageView" destination="HVG-35-wgN" id="A4I-Ol-Akf"/>
+                        <outlet property="articleImageView" destination="HVG-35-wgN" id="A4I-Ol-Akf"/>
+                        <outlet property="articleTableView" destination="Xez-lb-u4N" id="aVK-7H-5Ev"/>
+                        <outlet property="articleTextView" destination="Ojo-bx-Im8" id="vXM-1C-BkP"/>
                         <outlet property="replyButton" destination="pP4-Qn-FKI" id="vHv-Ks-ror"/>
-                        <outlet property="replyTextField" destination="ez5-Tw-QeR" id="z8h-H4-YAF"/>
-                        <outlet property="tableView" destination="Xez-lb-u4N" id="aVK-7H-5Ev"/>
-                        <outlet property="textView" destination="Ojo-bx-Im8" id="vXM-1C-BkP"/>
+                        <outlet property="replyTextView" destination="ez5-Tw-QeR" id="z8h-H4-YAF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f5T-RN-IU4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4299" y="-1224"/>
+            <point key="canvasLocation" x="4298.5507246376819" y="-1224.1071428571429"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7q6-BA-9s0">
@@ -452,10 +452,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="ugL-If-Eve"/>
                     <connections>
-                        <outlet property="AddImageCollectionView" destination="mli-HL-IWi" id="RS1-cZ-apQ"/>
-                        <outlet property="ImageView" destination="H6E-0p-piK" id="Qa1-6e-jMg"/>
-                        <outlet property="TextView" destination="6OG-ed-rRA" id="hfH-gv-tr7"/>
-                        <outlet property="pageView" destination="YIe-D3-MZ9" id="4XY-AN-oEa"/>
+                        <outlet property="addImageCollectionView" destination="mli-HL-IWi" id="RS1-cZ-apQ"/>
+                        <outlet property="addImageView" destination="H6E-0p-piK" id="Qa1-6e-jMg"/>
+                        <outlet property="addPageView" destination="YIe-D3-MZ9" id="4XY-AN-oEa"/>
+                        <outlet property="addTextView" destination="6OG-ed-rRA" id="hfH-gv-tr7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ABx-MG-6BN" userLabel="First Responder" sceneMemberID="firstResponder"/>

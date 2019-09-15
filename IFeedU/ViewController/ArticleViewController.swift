@@ -15,11 +15,11 @@ import Fusuma
 
 class ArticleViewController: UIViewController {
 
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var replyTextField: UITextField!
+    @IBOutlet weak var articleImageView: UIImageView!
+    @IBOutlet weak var articleTextView: UITextView!
+    @IBOutlet weak var replyTextView: UITextField!
     @IBOutlet weak var replyButton: UIButton!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var articleTableView: UITableView!
 
     var ref:DatabaseReference?
     var storageRef:StorageReference?
@@ -54,21 +54,24 @@ class ArticleViewController: UIViewController {
         color = remoteconfig["splash_color"].stringValue
 
         self.view.backgroundColor = UIColor(hex: backgroundColor)
-        tableView.backgroundColor = UIColor(hex: backgroundColor)
+        articleTableView.backgroundColor = UIColor(hex: backgroundColor)
         
-        textView.text = mainText
-        imageView.image = img
+        articleTextView.text = mainText
+        articleImageView.image = img
         
         replyButton.backgroundColor = UIColor(hex: color)
         replyButton.tintColor = UIColor(white: 1.0, alpha: 1.0)
-                
         replyButton.addTarget(self, action: #selector(uploadReply), for: .touchUpInside)
-        replyTextField.backgroundColor = UIColor(hex: backgroundColor)
+
+        articleTableView.separatorStyle = .none
         
-        tableView.separatorStyle = .none
-        
-        replyTextField.delegate = self as? UITextFieldDelegate
-        
+        replyTextView.delegate = self
+        replyTextView.returnKeyType = .done
+        replyTextView.backgroundColor = UIColor(hex: backgroundColor)
+        replyTextView.textColor = UIColor(hex: color)
+        replyTextView.attributedPlaceholder = NSAttributedString(string: "댓글을 입력해주세요.", attributes: [NSAttributedString.Key.foregroundColor : UIColor(hex: color)])
+
+        // 키보드 활성화시 댓글뷰어의 pop
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
        
@@ -84,26 +87,14 @@ class ArticleViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.textView.isEditable = false
+        self.articleTextView.isEditable = false
 
     }
     override func viewDidDisappear(_ animated: Bool) {
-        self.textView.isEditable = false
-    }
-       
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+        self.articleTextView.isEditable = false
     }
     
-    @objc func keyboardWillShow(_ sender: Notification) {
-        self.view.frame.origin.y = -300   // Move view 300 points upward
-    }
-    
-    @objc func keyboardWillHide(_ sender: Notification) {
-        self.view.frame.origin.y = 0 // Move view to original position
-    }
-
+    // MARK: -load reply
     func loadReply(){
         var orderedQuery:DatabaseQuery?
 //        orderedQuery = ref?.child("replys").child("\(String(describing: intTimelineDate))").queryOrdered(byChild: "replydate")
@@ -129,7 +120,7 @@ class ArticleViewController: UIViewController {
             }
             
             self.replys += self.loadedReplys.prefix(reply_NumPerOneLoad)
-            self.tableView.reloadData()
+            self.articleTableView.reloadData()
         })
 
     }
@@ -161,7 +152,7 @@ class ArticleViewController: UIViewController {
             }
             self.loadedReplys.insert(contentsOf: freshPostsChunk, at: 0)
             self.replys.insert(contentsOf: freshPostsChunk, at: 0)
-            self.tableView.reloadData()
+            self.articleTableView.reloadData()
         })
         
         func loadPastReplys(){
@@ -171,7 +162,7 @@ class ArticleViewController: UIViewController {
             if pastChunkReplys.count > 0{
                 self.replys += pastChunkReplys
                 sleep(1)
-                self.tableView.reloadData()
+                self.articleTableView.reloadData()
             }
         }
         
@@ -208,11 +199,11 @@ class ArticleViewController: UIViewController {
             print(error.localizedDescription)
         }
 
-        if replyTextField.text! == "" {
+        if replyTextView.text! == "" {
             defaultAlert(title: "댓글을 입력하지 않았습니다.", message: "댓글을 입력해주세요.")
         }
 
-        curRef?.child("replytext").setValue(self.replyTextField.text)
+        curRef?.child("replytext").setValue(self.replyTextView.text)
         
         let dateformmater = DateFormatter()
         let date = Date()
@@ -227,6 +218,19 @@ class ArticleViewController: UIViewController {
         
     }
     
+}
+
+
+extension ArticleViewController : UITextFieldDelegate {
+        
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        replyTextView.endEditing(true)
+    }
+    
+    override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        replyTextView.resignFirstResponder()
+        return true
+    }
 }
 
 extension ArticleViewController : UITableViewDataSource{
