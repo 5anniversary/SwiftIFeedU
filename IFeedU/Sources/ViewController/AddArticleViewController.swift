@@ -7,6 +7,7 @@
 //
 
 import UIKit
+
 import Firebase
 import FirebaseDatabase
 import FirebaseStorage
@@ -14,16 +15,18 @@ import Fusuma
 
 class AddArticleViewController: UIViewController {
 
+    // MARK: - UI components
+    
     @IBOutlet weak var addImageCollectionView: UICollectionView!
     @IBOutlet weak var addImageView: UIImageView!
     @IBOutlet weak var addTextView: UITextField!
     @IBOutlet weak var addPageView: UIPageControl!
     
-    var image = UIImage()
+    // MARK: - Variables and Properties
     
+    var image = UIImage()
     var ref:DatabaseReference?
     var storageRef:StorageReference?
-    
     let remoteconfig = RemoteConfig.remoteConfig()
     var backgroundColor : String!
     var color : String!
@@ -38,6 +41,8 @@ class AddArticleViewController: UIViewController {
         let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(uploadPost))
         return button
     }()
+    
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,27 +69,8 @@ class AddArticleViewController: UIViewController {
         addImageView.isUserInteractionEnabled = true
         addImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(fusumaImagePicker)))
 
-        // Do any additional setup after loading the view.
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    func dismissKeyboard(){
-        addTextView.resignFirstResponder()
     }
         
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        textView.becomeFirstResponder()
-    }
-    override func viewDidAppear(_ animated: Bool) {
-//        self.TextView.isEditable = true
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-//        self.TextView.isEditable = false
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
 //        self.ImageView.image = image
@@ -93,16 +79,15 @@ class AddArticleViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
     }
-
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange,
-                   replacementString string: String) -> Bool
-    {
-        let maxLength = 79
-        let currentString: NSString = addTextView.text! as NSString
-        let newString: NSString =
-            currentString.replacingCharacters(in: range, with: string) as NSString
-        return newString.length <= maxLength
+    
+    // MARK: - Helpers
+    
+    func dismissKeyboard(){
+        addTextView.resignFirstResponder()
+    }
         
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        textView.becomeFirstResponder()
     }
     
     @IBAction func uploadPost(){

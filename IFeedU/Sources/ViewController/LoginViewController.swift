@@ -7,20 +7,27 @@
 //
 
 import UIKit
+
 import Firebase
 import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
+    // MARK: - UI components
+
     @IBOutlet weak var emailLVC: UITextField!
     @IBOutlet weak var passwordLVC: UITextField!
     @IBOutlet weak var loginButtonLV: UIButton!
     @IBOutlet weak var signUpButtonLV: UIButton!
     
+    // MARK: - Variables and Properties
+
     let remoteconfig = RemoteConfig.remoteConfig()
     var backgroundColor : String!
     var color : String!
     
+    // MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -41,7 +48,6 @@ class LoginViewController: UIViewController {
         signUpButtonLV.backgroundColor = UIColor(hex: color)
         
         self.view.backgroundColor = UIColor(hex: backgroundColor)
-        // Do any additional setup after loading the view.
         
         loginButtonLV.addTarget(self, action: #selector(loginEvent), for: .touchUpInside)
         signUpButtonLV.addTarget(self, action: #selector(presentSignUp), for: .touchUpInside)
@@ -55,6 +61,8 @@ class LoginViewController: UIViewController {
         }
     }
     
+    // MARK: - Helpers
+
     @IBAction func loginEvent(){
         Auth.auth().signIn(withEmail: emailLVC.text!, password: passwordLVC.text!){(user, err) in
             if(err != nil){

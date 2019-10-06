@@ -7,14 +7,19 @@
 //
 
 import UIKit
-import SnapKit
+
 import Firebase
+import SnapKit
 
 class ViewController: UIViewController {
     
+    // MARK: - Variables and Properties
+
     var box = UIImageView()
     var remoteConfig : RemoteConfig!
     
+    // MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,6 +43,7 @@ class ViewController: UIViewController {
             }
             self.displayWelcome()
         }
+        
         self.view.backgroundColor = UIColor(hex: backgroundColor!)
         
         self.view.addSubview(box)
@@ -45,8 +51,11 @@ class ViewController: UIViewController {
             make.center.equalTo(self.view)
         }
         box.image = UIImage(named: "sticks")
+    
     }
     
+    // MARK: - Helpers
+
     func displayWelcome(){
         
         let backgroundColor : String! = remoteConfig["splash_background"].stringValue

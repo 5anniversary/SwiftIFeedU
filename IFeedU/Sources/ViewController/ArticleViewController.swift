@@ -7,6 +7,7 @@
 //
 
 import UIKit
+
 import Firebase
 import FirebaseDatabase
 import FirebaseStorage
@@ -15,12 +16,16 @@ import Fusuma
 
 class ArticleViewController: UIViewController {
 
+    // MARK: - UI components
+    
     @IBOutlet weak var articleImageView: UIImageView!
     @IBOutlet weak var articleTextView: UITextView!
     @IBOutlet weak var replyTextView: UITextField!
     @IBOutlet weak var replyButton: UIButton!
     @IBOutlet weak var articleTableView: UITableView!
-
+    
+    // MARK: - Variables and Properties
+    
     var ref:DatabaseReference?
     var storageRef:StorageReference?
 
@@ -42,6 +47,8 @@ class ArticleViewController: UIViewController {
         return button
     }()
 
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -74,18 +81,8 @@ class ArticleViewController: UIViewController {
         // 키보드 활성화시 댓글뷰어의 pop
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-       
-        // Do any additional setup after loading the view.
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
+        
     override func viewDidAppear(_ animated: Bool) {
         self.articleTextView.isEditable = false
 
@@ -93,8 +90,14 @@ class ArticleViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         self.articleTextView.isEditable = false
     }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
     
-    // MARK: -load reply
+
+    // MARK: -Helpers
+    
     func loadReply(){
         var orderedQuery:DatabaseQuery?
 //        orderedQuery = ref?.child("replys").child("\(String(describing: intTimelineDate))").queryOrdered(byChild: "replydate")
@@ -220,6 +223,7 @@ class ArticleViewController: UIViewController {
     
 }
 
+// MARK: -UITextFieldDelegate
 
 extension ArticleViewController : UITextFieldDelegate {
         
@@ -232,6 +236,8 @@ extension ArticleViewController : UITextFieldDelegate {
         return true
     }
 }
+
+// MARK: -UITableViewDataSource
 
 extension ArticleViewController : UITableViewDataSource{
 

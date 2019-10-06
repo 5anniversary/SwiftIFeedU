@@ -7,6 +7,7 @@
 //
 
 import UIKit
+
 import Firebase
 import FirebaseDatabase
 import FirebaseStorage
@@ -14,25 +15,27 @@ import FirebaseUI
 
 class TimelineTableViewController: UITableViewController {
 
+    // MARK: - UI components
+    @IBOutlet weak var FooterLabel: UILabel!    //loading..메세지를 표시할 라벨
+    
+    lazy var leftBarButton : UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "로그아웃", style: .plain, target: self, action: #selector(logoutButton))
+        return button
+    }()
+
+    // MARK: - Variables and Properties
     var ref:DatabaseReference?
     var storageRef:StorageReference?
 
     var posts = [Post]()                //테이블 뷰에 표시될 포스트들을 담는 배열
     var loadedPosts = [Post]()          //Firebase에서 로드된 포스트들
-
-    @IBOutlet weak var FooterLabel: UILabel!    //loading..메세지를 표시할 라벨
     
     let remoteconfig = RemoteConfig.remoteConfig()
     var backgroundColor : String!
     var color : String!
 
     
-    lazy var leftBarButton : UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "로그아웃", style: .plain, target: self, action: #selector(logoutButton))
-        
-        return button
-    }()
-    
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,20 +58,14 @@ class TimelineTableViewController: UITableViewController {
         self.FooterLabel.textColor = UIColor(hex: color)
         self.view.backgroundColor = UIColor(hex: backgroundColor)
     }
+    
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
+    // MARK: - tableview
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
-    @IBAction func logoutButton(){
-        try! Auth.auth().signOut()
-        dismiss(animated: true)
-    }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.posts.count
     }
@@ -98,6 +95,23 @@ class TimelineTableViewController: UITableViewController {
         
         self.navigationController?.pushViewController(view!, animated: true)
     }
+
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let  height = scrollView.frame.size.height
+        let contentYoffset = scrollView.contentOffset.y
+        let distanceFromBottom = scrollView.contentSize.height + self.FooterLabel.frame.height - contentYoffset
+        if distanceFromBottom < height {
+            print(" you reached end of the table")
+            loadPastPosts()
+        }
+    }
+    
+    // MARK: - Helpers
+    @IBAction func logoutButton(){
+        try! Auth.auth().signOut()
+        dismiss(animated: true)
+    }
+
     
     func loadPosts(){
         var orderedQuery:DatabaseQuery?
@@ -179,24 +193,4 @@ class TimelineTableViewController: UITableViewController {
         self.refreshControl?.endRefreshing()
     }
     
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let  height = scrollView.frame.size.height
-        let contentYoffset = scrollView.contentOffset.y
-        let distanceFromBottom = scrollView.contentSize.height + self.FooterLabel.frame.height - contentYoffset
-        if distanceFromBottom < height {
-            print(" you reached end of the table")
-            loadPastPosts()
-        }
-    }
-
-}
-
-extension Int {
-    var toDayTime : String{
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "ko_KR")
-        dateFormatter.dateFormat = "yyyy.MM.dd HH:mm"
-        let date = Date(timeIntervalSince1970: Double(self)/1000)
-        return dateFormatter.string(from:date)
-    }
 }
